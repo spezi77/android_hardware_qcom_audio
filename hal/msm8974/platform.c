@@ -173,7 +173,7 @@ static const int acdb_device_table[SND_DEVICE_MAX] = {
     [SND_DEVICE_OUT_VOICE_TTY_VCO_HEADPHONES] = 17,
     [SND_DEVICE_OUT_VOICE_TTY_HCO_HANDSET] = 37,
     [SND_DEVICE_OUT_AFE_PROXY] = 0,
-    [SND_DEVICE_OUT_USB_HEADSET] = 0,
+    [SND_DEVICE_OUT_USB_HEADSET] = 45,
     [SND_DEVICE_OUT_SPEAKER_AND_USB_HEADSET] = 14,
     [SND_DEVICE_OUT_ANC_HEADSET] = 26,
     [SND_DEVICE_OUT_ANC_FB_HEADSET] = 26,
@@ -219,6 +219,7 @@ static bool is_tmus = false;
 
 static void check_operator()
 {
+#ifndef DISABLE_TMUS_AUDIO
     char value[PROPERTY_VALUE_MAX];
     int mccmnc;
     property_get("gsm.sim.operator.numeric",value,"0");
@@ -245,6 +246,7 @@ static void check_operator()
         is_tmus = true;
         break;
     }
+#endif
 }
 
 bool is_operator_tmus()
