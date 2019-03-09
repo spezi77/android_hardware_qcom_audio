@@ -117,6 +117,7 @@ LOCAL_SHARED_LIBRARIES := \
 	libexpat
 
 LOCAL_C_INCLUDES += \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include \
 	external/tinyalsa/include \
 	external/tinycompress/include \
 	$(call include-path-for, audio-route) \
@@ -216,6 +217,9 @@ ifeq ($(strip $(AUDIO_FEATURE_ENABLED_BG_CAL)),true)
 endif
 
 LOCAL_SHARED_LIBRARIES += libbase libhidlbase libhwbinder libutils android.hardware.power@1.2 liblog
+
+LOCAL_ADDITIONAL_DEPENDENCIES := \
+	$(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_SRC_FILES += audio_perf.cpp
 
